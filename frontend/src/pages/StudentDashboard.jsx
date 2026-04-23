@@ -30,9 +30,9 @@ const StudentDashboard = () => {
     try {
       setLoading(true);
       const [groupRes, projRes, reqRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/groups/me'),
-        axios.get('http://localhost:5000/api/projects'),
-        axios.get('http://localhost:5000/api/requests/student')
+        axios.get('https://project-allocator.onrender.com/api/groups/me'),
+        axios.get('https://project-allocator.onrender.com/api/projects'),
+        axios.get('https://project-allocator.onrender.com/api/requests/student')
       ]);
       setGroup(groupRes.data);
       setProjects(projRes.data);
@@ -54,7 +54,7 @@ const StudentDashboard = () => {
     e.preventDefault();
     const emailsToLink = memberEmails.slice(0, numAdditionalMembers).filter(e => e.trim() !== '');
     try {
-      const res = await axios.post('http://localhost:5000/api/groups', { additionalEmails: emailsToLink });
+      const res = await axios.post('https://project-allocator.onrender.com/api/groups', { additionalEmails: emailsToLink });
       setGroup(res.data);
       alert('Group created successfully! All members are now linked.');
     } catch (err) {
@@ -68,7 +68,7 @@ const StudentDashboard = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/requests', { projectId, groupId: group.id });
+      await axios.post('https://project-allocator.onrender.com/api/requests', { projectId, groupId: group.id });
       alert('Request sent successfully!');
       fetchData();
     } catch (err) {
@@ -79,7 +79,7 @@ const StudentDashboard = () => {
   const handleSubmitSynopsis = async (e, projectId) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/api/projects/${projectId}/submit-synopsis`, { synopsisUrl });
+      await axios.post(`https://project-allocator.onrender.com/api/projects/${projectId}/submit-synopsis`, { synopsisUrl });
       alert('Synopsis submitted successfully!');
       fetchData();
     } catch (err) {
@@ -90,7 +90,7 @@ const StudentDashboard = () => {
   const handleSubmitFinal = async (e, projectId) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/api/projects/${projectId}/submit-final`, { finalUrl });
+      await axios.post(`https://project-allocator.onrender.com/api/projects/${projectId}/submit-final`, { finalUrl });
       alert('Final Project submitted successfully!');
       fetchData();
     } catch (err) {

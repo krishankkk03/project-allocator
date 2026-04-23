@@ -22,8 +22,8 @@ const TeacherDashboard = () => {
   const fetchData = async () => {
     try {
       const [projRes, reqRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/projects/teacher'),
-        axios.get('http://localhost:5000/api/requests/teacher')
+        axios.get('https://project-allocator.onrender.com/api/projects/teacher'),
+        axios.get('https://project-allocator.onrender.com/api/requests/teacher')
       ]);
       setProjects(projRes.data);
       setRequests(reqRes.data);
@@ -35,7 +35,7 @@ const TeacherDashboard = () => {
   const handleAddProject = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/projects', newProject);
+      await axios.post('https://project-allocator.onrender.com/api/projects', newProject);
       setNewProject({ title: '', technology: '', description: '' });
       setShowAddForm(false);
       fetchData();
@@ -46,7 +46,7 @@ const TeacherDashboard = () => {
 
   const handleRequest = async (id, status) => {
     try {
-      await axios.put(`http://localhost:5000/api/requests/${id}/status`, { status });
+      await axios.put(`https://project-allocator.onrender.com/api/requests/${id}/status`, { status });
       fetchData();
     } catch (err) {
       console.error(err);

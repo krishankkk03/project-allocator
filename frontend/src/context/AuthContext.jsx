@@ -19,11 +19,11 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const requestLogin = async (email, password) => {
-    await axios.post('http://localhost:5000/api/auth/login', { email, password });
+    await axios.post('https://project-allocator.onrender.com/api/auth/login', { email, password });
   };
 
   const verifyLogin = async (email, otp) => {
-    const res = await axios.post('http://localhost:5000/api/auth/verify-login', { email, otp });
+    const res = await axios.post('https://project-allocator.onrender.com/api/auth/verify-login', { email, otp });
     localStorage.setItem('token', res.data.token);
     localStorage.setItem('user', JSON.stringify(res.data.user));
     axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
@@ -32,11 +32,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const requestRegister = async (data) => {
-    await axios.post('http://localhost:5000/api/auth/register', data);
+    await axios.post('https://project-allocator.onrender.com/api/auth/register', data);
   };
 
   const verifyRegister = async (email, otp) => {
-    await axios.post('http://localhost:5000/api/auth/verify-register', { email, otp });
+    await axios.post('https://project-allocator.onrender.com/api/auth/verify-register', { email, otp });
   };
 
   const logout = () => {

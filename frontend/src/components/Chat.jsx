@@ -13,7 +13,7 @@ const Chat = ({ roomId, currentUser, otherPartyName, onClose }) => {
     // Fetch previous messages
     const fetchMessages = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/messages/${roomId}`);
+        const res = await axios.get(`https://project-allocator.onrender.com/api/messages/${roomId}`);
         setMessages(res.data);
         scrollToBottom();
       } catch (err) {
@@ -23,7 +23,7 @@ const Chat = ({ roomId, currentUser, otherPartyName, onClose }) => {
     fetchMessages();
 
     // Connect socket
-    const newSocket = io('http://localhost:5000');
+    const newSocket = io('https://project-allocator.onrender.com');
     setSocket(newSocket);
 
     newSocket.emit('join_room', roomId);
